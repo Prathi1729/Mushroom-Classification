@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html><!--From https://codepen.io/frytyler/pen/EGdtg--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Machine Learning API</title>
+</head>
+
+<body>
+
+    <div style="color:black;" class="ml-container">
+	
+        <h1>Mushroom Classification</h1><i>ENTER CHARACTERISTICS:</i><form action="{{ url_for('predict') }}" method="POST">
+            <br>
+            <br>
+            <select class="form-input align-center" name="cap_shape">
+                <option value="None">cap_shape</option>
+                <option value="1">conical</option>
+                <option value="2">flat</option>
+                <option value="3">knobbed</option>
+                <option value="4">sunken</option>
+                <option value="5">convex</option>
+                <option value="0">bell</option>
+            </select>                             
+            <br>
+            <br>
+            <select class="form-input align-center" name="cap_surface">
+                <option value="None">cap_surface</option>
+                <option value="1">grooves</option>
+                <option value="2">smooth</option>
+                <option value="3">scaly</option>
+                <option value="0">fibrous</option>                
+            </select>
+            <br>
+            <br>
+            <select class="form-input align-center" name="cap_color">
+                <option value="None">cap_color</option>
+                <option value="1">cinnamon</option>
+                <option value="2">red</option>
+                <option value="3">gray</option>
+                <option value="4">brown</option>
+                <option value="5">pink</option>
+                <option value="6">green</option>
+                <option value="7">purple</option>
+                <option value="8">white</option>
+                <option value="9">yellow</option>
+                <option value="0">buff</option>   
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-side" name="bruises">
+                <option value="None">bruises</option>
+                <option value="1">true</option>
+                <option value="0">false</option>   
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-center" name="odor">
+                <option value="None">odor</option>
+                <option value="1">creosote</option>
+                <option value="2">foul</option>
+                <option value="3">anise</option>
+                <option value="4">musty</option>
+                <option value="5">none</option>
+                <option value="6">pungent</option>
+                <option value="7">spicy</option>
+                <option value="8">fishy</option>
+                <option value="0">almomd</option>
+            </select> 
+            <br>
+            <br> 
+            <select class="form-input align-center" name="gill_attachment">
+                <option value="None">gill_attachment</option>
+                <option value="1">free</option>
+                <option value="0">attached</option> 
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-center" name="gill_spacing">
+                <option value="None">gill_spacing</option>
+                <option value="1">crowded</option>
+                <option value="0">close</option> 
+            </select> 
+            <br> 
+            <br> 
+            <select class="form-input align-center" name="gill_size">
+                <option value="None">gill_size</option>
+                <option value="1">narrow</option>
+                <option value="0">broad</option> 
+            </select> 
+            <br>
+            <br> 
+            <select class="form-input align-center" name="gill_color">
+                <option value="None">gill_color</option>
+                <option value="1">red</option>
+                <option value="2">gray</option>
+                <option value="3">chocolate</option>
+                <option value="4">black</option>
+                <option value="5">brown</option>
+                <option value="6">orange</option>
+                <option value="7">pink</option>
+                <option value="8">green</option>
+                <option value="9">purple</option>
+                <option value="10">white</option>
+                <option value="11">yellow</option>
+                <option value="0">buff</option>
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-center" name="stalk_shape">
+                <option value="None">stalk_shape</option>
+                <option value="1">tapering</option>
+                <option value="0">enlarging</option> 
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-center" name="stalk_root">
+                <option value="None">stalk_root</option>
+                <option value="3">missing</option>
+                <option value="1">club</option>
+                <option value="2">equal</option>
+                <option value="4">rooted</option>
+                <option value="0">bulbous</option>                            
+            </select>
+            <br>
+            <br> 
+            <select class="form-input align-center" name="stalk_surface_above_ring">
+                <option value="None">stalk_surface_above_ring</option>
+                <option value="1">silky</option>
+                <option value="2">smooth</option>
+                <option value="3">scaly</option>
+                <option value="4">fibrous</option>                
+            </select>
+            <br>
+            <br>
+            <select class="form-input align-center" name="stalk_surface_below_ring">
+                <option value="None">stalk_surface_below_ring</option>
+                <option value="1">silky</option>
+                <option value="2">smooth</option>
+                <option value="3">scaly</option>
+                <option value="4">fibrous</option>                
+            </select>
+            <br> 
+            <br>            
+            <select class="form-input align-center" name="stalk_color_above_ring">
+                <option value="None">stalk_color_above_ring</option>
+                <option value="1">cinnamon</option>
+                <option value="2">red</option>
+                <option value="3">gray</option>
+                <option value="4">brown</option>
+                <option value="5">orange</option>                
+                <option value="6">pink</option>
+                <option value="7">white</option>
+                <option value="8">yellow</option>
+                <option value="0">buff</option>   
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-center" name="stalk_color_below_ring">
+                <option value="None">stalk_color_below_ring</option>
+                <option value="1">cinnamon</option>
+                <option value="2">red</option>
+                <option value="3">gray</option>
+                <option value="4">brown</option>
+                <option value="5">orange</option>                
+                <option value="6">pink</option>
+                <option value="7">white</option>
+                <option value="8">yellow</option>
+                <option value="0">buff</option>   
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-center" name="veil_color">
+                <option value="None">veil_color</option>
+                <option value="1">orange</option>
+                <option value="2">white</option>
+                <option value="3">yellow</option>
+                <option value="0">brown</option>                
+            </select>
+            <br> 
+            <br>
+            <select class="form-input align-center" name="ring_number">
+                <option value="None">ring_number</option>
+                <option value="1">one</option>
+                <option value="2">two</option>
+                <option value="0">none</option>               
+            </select>
+            <br>
+            <br>
+            <select class="form-input align-center" name="ring_type">
+                <option value="None">ring_type</option>
+                <option value="1">flaring</option>
+                <option value="2">large</option>
+                <option value="3">none</option>
+                <option value="4">pendent</option>
+                <option value="0">evanescent</option>                 
+            </select>
+            <br>
+            <br> 
+            <select class="form-input align-center" name="spore_print_color">
+                <option value="None">spore_print_color</option>
+                <option value="1">chocolate</option>
+                <option value="2">black</option>
+                <option value="3">brown</option>
+                <option value="4">orange</option>
+                <option value="5">green</option>                
+                <option value="6">purple</option>
+                <option value="7">white</option>
+                <option value="8">yellow</option>
+                <option value="0">buff</option>   
+            </select> 
+            <br>
+            <br>
+            <select class="form-input align-center" name="population">
+                <option value="None">population</option>
+                <option value="1">clustered</option>
+                <option value="2">numerous</option>
+                <option value="3">scattered</option>
+                <option value="4">several</option>
+                <option value="5">solitary</option>
+                <option value="0">abundant</option>                             
+            </select>
+            <br>
+            <br>
+            <select class="form-input align-center" name="habitat">
+                <option value="None">habitat</option>
+                <option value="1">grasses</option>
+                <option value="2">leaves</option>
+                <option value="3">meadows</option>
+                <option value="4">paths</option>
+                <option value="5">urban</option>
+                <option value="6">waste</option>
+                <option value="0">woods</option>                              
+            </select>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p class="footer-description">©Web App</p>
+
+
+    </div>
+<style>
+
+/* Background Image */
+body
+{
+background-image:url("https://www.saintjohnscancer.org/blog/wp-content/uploads/sites/11/2021/11/592-e1636153080640.jpg");
+height: 100%;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+
+}
+
+/* Color */
+
+body{
+	font-family: Arial, Helvetica,sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</style>
+
+
+
+
+</body></html>
